@@ -5,9 +5,6 @@
                 <h1 class="title">
                     Dicey McDiceFace
                 </h1>
-                <h2 class="subtitle">
-                    Hero subtitle
-                </h2>
             </div>
         </div>
     </section>
@@ -22,11 +19,11 @@ export default {
 <style scoped>
 
 h1 {
+    padding-top: 10px;
+    padding-left: 20px;
     color: white;
-}
-
-h2 {
-    color: white;
+    text-align: left;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 div {

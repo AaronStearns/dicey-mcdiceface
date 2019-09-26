@@ -1,12 +1,5 @@
 <template>
-    <div id="chart">
-        <h3>{{this.stuff[0]}}</h3>
-        <canvas ref="chart"></canvas>
-        {{counter}}
-        {{incrementCounter}}
-        <button @click="counter++">Counter</button>
-    </div>
-    
+
 </template>
 
 <script>
