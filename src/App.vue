@@ -39,12 +39,8 @@
                 <div></div>
             </div>
         </div>
-
         <button class="button is-primary" @click="rollDie()">ROLL</button>
-
         <button id="resetButton" class="button is-danger" @click="resetBoard()">RESET</button>
-            <!-- <Chart v-bind:stuff="stuff"/> -->
-            <!-- <DiceCounters v-bind:stuff="stuff" v-bind:dict="dict"></DiceCounters> -->
     </div>
 </template>
 
@@ -71,34 +67,25 @@ export default {
                 acc[val] = acc[val] === undefined ? 1 : acc[val] += 1;
                 return this.diceRollKeyVals = acc;
             }, {});
-            // console.log(this.diceRollKeyVals)
-            // for (const [key, value] of Object.entries(this.diceRollKeyVals)) {
-            //     if(value == 5) {
-            //         this.diceRolls = [];
-            //         this.diceRollKeyVals = {};
-            //         alert("value is five")
-            //     }
-            // }
             this.populateTags();
 
         },
         checkForWinner(key, val) {
             if (val == 5) {
-                // this.diceRollKeyVals = {"1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0};
                 alert("Winner! Side " + key)
-                // alert("mouseup")
+                resetBoard();
             }
         },
         resetBoard() {
                 this.diceRolls = [];
                 this.diceRollKeyVals = {};
 
-                var one = document.getElementById("1")
-                var two = document.getElementById("2")
-                var three = document.getElementById("3")         
-                var four = document.getElementById("4")
-                var five = document.getElementById("5")
-                var six = document.getElementById("6")
+                var one = document.getElementById("1");
+                var two = document.getElementById("2");
+                var three = document.getElementById("3");       
+                var four = document.getElementById("4");
+                var five = document.getElementById("5");
+                var six = document.getElementById("6");
 
                 one.innerText = "";
                 two.innerText = "";
