@@ -1,65 +1,10 @@
-<template>
-    <div id="chart">
-        <h3>{{this.stuff[0]}}</h3>
-        <canvas ref="chart"></canvas>
-        {{counter}}
-        {{incrementCounter}}
-        <button @click="counter++">Counter</button>
-    </div>
-    
-</template>
-
-<script>
-
-import Chart from 'chart.js';
-
-// console.log("Chart component: " + stuff[0])
-
-export default {
-    name: "Chart",
-    props: ["stuff"],
-    data() {
-        return {
-            counter: 3
-        }
-    },
-   methods: {
-        counterFunc() {
-        this.$nextTick(function () {
-            return this.counter
-        });
-        }
-    },
-//     methods: {
-//         createChart(chartId, chartData) {
-//             const ctx = document.getElementById(chartId);
-//             const myChart = new Chart(ctx, {
-//             type: chartData.type,
-//             data: chartData.data,
-//             options: chartData.options,
-//             });
-//         }
-//     },
-    computed: {
-        // a computed getter
-        incrementCounter: function () {
-        // `this` points to the vm instance
-        return this.counter
-        }
-    },
-
-    mounted() {
-        
-            var chart = this.$refs.chart;
-            // var ctx = chart.getContext("2d");
-            var myChart = new Chart(chart, {
-                type: 'bar',
-                data: {
+export const barChartData = {
+    data: {
                     labels: ["1", ],
                     // "2", "3", "4", "5", "6"
                     datasets: [{
                         label: 'Number Of Rolls',
-                        data: [this.counterFunc()],
+                        data: [4],
                         // 2, 1, 5, 2, 3
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.7)',
@@ -81,7 +26,6 @@ export default {
                     }]
                 },
                 options: {
-                    responsive: true,
                     scales: {
                         yAxes: [{
                             ticks: {
@@ -93,15 +37,7 @@ export default {
                         }]
                     }
                 }
-            });
-        }
-}
-</script>
 
-<style scoped>
-
-#chart {
-    width: 500px;
 }
 
-</style>
+export default barChartData;

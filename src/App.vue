@@ -1,101 +1,129 @@
 <template>
-    <div id="app">
-        <div id="content">
-            <Header></Header>
-    <!-- <Chart></Chart> -->
-     <DieRoller></DieRoller> 
+    <div id="app">
+        <Header></Header>
+        <div id="content">
+            <div class="inlineDice">
+                <img src="./assets/faceOne.png"/>
+                <p id="1">
+                </p>
+            </div>
+            <div>
+                <img src="./assets/faceTwo.png"/>
+                <p id="2">
+                </p>
+            </div>
+            <div>
+                <img src="./assets/faceThree.png"/>
+                <p id="3">
+                </p>
+            </div>
+            <div>
+                <img src="./assets/faceFour.png"/>
+                <p id="4">
+                </p>
+            </div>
+            <div>
+                <img src="./assets/faceFive.png"/>
+                <p id="5">
+                </p>
+            </div>
+            <div>
+                <img src="./assets/faceSix.png"/>
+                <p id="6">
+                </p>
+            </div>
 
-    <!-- <div id="example-1">
-      <button v-on:click="counter += 1">Add 1</button>
-      <p>The button above has been clicked {{ counter }} times.</p>
-    </div> -->
-
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-
-            <DiceCounters></DiceCounters>
-            <canvas ref="chart"></canvas>
+            <button class="button is-primary" @click="rollDie()">asdf</button>
         </div>
+            <!-- <Chart v-bind:stuff="stuff"/> -->
+            <!-- <DiceCounters v-bind:stuff="stuff" v-bind:dict="dict"></DiceCounters> -->
     </div>
 </template>
 
 <script>
-    import Header from './components/Header.vue'
-    import DiceCounters from './components/DiceCounters.vue'
-    import DieRoller from './components/DieRoller.vue'
-    // import Chart from './components/Chart.vue'
+import Header from './components/Header.vue'
+import DiceCounters from './components/DiceCounters.vue'
+import DieRoller from './components/DieRoller.vue'
 
-    import Chart from 'chart.js';
+export default {
+    name: 'app',
+    components: {
+        Header,
+        DiceCounters,
+        DieRoller,
+    },
+    data() {
+        return {
+            stuff: [],
+            dict: {}
+        }
+    },
+    methods: {
+        rollDie() {
+            var d1 = Math.floor(Math.random() * 6) + 1;
+            this.stuff.push(d1)
 
-    export default {
-          name: 'app',
-          components: {
-            Header,
-            DiceCounters,
-            DieRoller,
-            Chart
-          },
-        mounted() {
-            var chart = this.$refs.chart;
-            // var ctx = chart.getContext("2d");
-            var myChart = new Chart(chart, {
-                type: 'bar',
-                data: {
-                    labels: ["1", "2", "3", "4", "5", "6"],
-                    datasets: [{
-                        label: 'Number Of Rolls',
-                        data: [3, 2, 1, 5, 2, 3],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.7)',
-                            'rgba(54, 162, 235, 0.7)',
-                            'rgba(255, 206, 86, 0.7)',
-                            'rgba(75, 192, 192, 0.7)',
-                            'rgba(153, 102, 255, 0.7)',
-                            'rgba(255, 159, 64, 0.7)'
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true,
-                                min: 0,
-                                max: 5,
-                                stepSize: 1
-                            }
-                        }]
-                    }
+            var uniqs = this.stuff.reduce((acc, val) => {
+                acc[val] = acc[val] === undefined ? 1 : acc[val] += 1;
+                return this.dict = acc;
+            }, {});
+            console.log(this.dict)
+            this.populateTags();
+            // console.log(this.stuff)
+    //               this.stuff[0] += 1
+    //               console.log(this.stuff)
+        },
+        populateTags() {
+            for (const [key, value] of Object.entries(this.dict)) {
+                var one = document.getElementById("1")
+                var two = document.getElementById("2")
+                var three = document.getElementById("3")
+                var four = document.getElementById("4")
+                var five = document.getElementById("5")
+                var six = document.getElementById("6")
+
+                if (key == "1") {
+                    one.innerHTML = value;
+                } else if (key == "2") {
+                    two.innerHTML = value;
+                } else if (key == "3") {
+                    three.innerHTML = value;
+                } else if (key == "4") {
+                    four.innerHTML = value;
+                } else if (key == "5") {
+                    five.innerHTML = value;
+                } else if (key == "6") {
+                    six.innerHTML = value;
                 }
-            });
-        }
+
+                // console.log(`${key}: ${value}`);
+            }
+        }        
     }
+}
 </script>
 
-<style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        /* margin-top: 60px; */
-    }
-    #content {
-        margin: auto;
-        width: 500px;
-        background-color: #FFFFFF;
-        padding: 20px;
-    }
+<style scoped>
+
+/* .inlineDice  {
+        display: inline-block;
+    width: 200px;
+    height: 100px;
+} */
+
+#content div img {
+    padding-top: 0;
+
+}
+
+#content div div {
+    padding: 0;
+    margin: 0;
+}
+#content div {
+    display: inline-block;
+    width: 200px;
+    height: 100px;
+}
+
 </style>
-
-
-
