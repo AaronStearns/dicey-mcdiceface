@@ -1,4 +1,10 @@
 # dicey-mcdiceface
+![](https://github.com/AaronStearns/dicey-mcdiceface/blob/master/dicey.png)
+
+
+A dice-rolling game that counts the number of times each face of the die is rolled. When one side gets to five, the winning side is declared in an alert. The reset button clears the board. 
+
+After cloning down the repository, cd into the repo and run the following commands:
 
 ## Project setup
 ```
@@ -9,21 +15,3 @@ yarn install
 ```
 yarn run serve
 ```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
